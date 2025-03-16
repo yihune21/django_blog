@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from blog.forms import CommentForm
 from blog.models import Post,Comment
+from django.db.models import Q
 
 def blog_index(request):
     
@@ -50,3 +51,20 @@ def blog_detail(request , pk):
     }
     
     return render(request, "blog/detail.html" , context)
+
+
+def blog_search(request):
+    
+    query = request.GET.get('q')
+    
+    if query:
+        posts = Post.objects.filter(
+                Q(title__icontains=query) |
+                Q(body__icontains=query) |
+                Q(categories__name__icontains=query)
+            ).distinct()
+    else:
+        posts = Post.objects.none()
+        
+    return render(request, 'blog/search_results.html', {'posts': posts, 'query': query})
+    
