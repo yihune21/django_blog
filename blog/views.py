@@ -3,12 +3,18 @@ from django.shortcuts import render
 from blog.forms import CommentForm
 from blog.models import Post,Comment
 from django.db.models import Q
+from django.core.paginator import Paginator
 
 def blog_index(request):
     
     posts = Post.objects.all().order_by('-created_on')
+    paginator = Paginator(posts , 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
     context = {
-        "posts": posts
+        'page_obj' : page_obj
+        
     }
     
     return render(request, "blog/index.html", context)
