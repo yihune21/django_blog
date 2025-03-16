@@ -1,19 +1,28 @@
-<!-- templates/base.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>My Personal Blog</title>
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <style>
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center; 
+        }
+    </style>
 </head>
 <body>
-<h1>My Personal Blog</h1>
-<a href="{% url "blog_index" %}">Home</a>
-<form method="GET" action="{% url 'blog_search' %}">
-    <input type="text" name="q" placeholder="Search posts...">
-    <button type="submit">Search</button>
-</form>
+<div class="navbar">
+    <h1>Blog </h1>
+    <a href="{% url 'blog_index' %}">Home</a>
+    <div>
+        <form method="GET" action="{% url 'blog_search' %}">
+            <input type="text" name="q" placeholder="Search posts...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</div>
 <hr>
 {% block page_title %}{% endblock page_title %}
 {% block page_content %}{% endblock page_content %}
