@@ -8,7 +8,6 @@ class CommentAdmin(admin.ModelAdmin):
 class PostAdmin(admin.ModelAdmin):
     pass
 
-
 admin.site.register(Category , CategortAdmin)
 admin.site.register(Comment  , CommentAdmin)
 admin.site.register(Post , PostAdmin)

@@ -13,14 +13,15 @@ def blog_index(request):
     page_obj = paginator.get_page(page_number)
     
     context = {
-        'page_obj' : page_obj
-        
+        'page_obj' : page_obj,
+        'posts' : posts
     }
     
     return render(request, "blog/index.html", context)
 
 
 def blog_category(request , category):
+    
     posts = Post.objects.filter(
         categories__name__contains = category
     )
@@ -74,3 +75,4 @@ def blog_search(request):
         
     return render(request, 'blog/search_results.html', {'posts': posts, 'query': query})
     
+
