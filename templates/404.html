@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    <div class="error-page">
+        <h1>404</h1>
+    </div>
+{% endblock page_title %}
+
+{% block page_content %}
+    <div class="error-page">
+        <p>The page you're looking for doesn't exist.</p>
+        <p>It might have been removed, had its name changed, or is temporarily unavailable.</p>
+        <a href="{% url 'blog_index' %}">Return to Home</a>
+    </div>
+{% endblock page_content %}
